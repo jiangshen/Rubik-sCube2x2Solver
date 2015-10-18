@@ -307,6 +307,76 @@ public class Cube {
         m_aCube[4][1] = frontHand[7];
     }
 
+    public void turnB() {
+            char[] backBack = new char[4];
+            backBack[0] = m_aCube[1][3];
+            backBack[1] = m_aCube[1][2];
+            backBack[2] = m_aCube[0][2];
+            backBack[3] = m_aCube[0][3];
+
+            char[] backHand = new char[8];
+            backHand[0] = m_aCube[2][2];
+            backHand[1] = m_aCube[2][3];
+            backHand[2] = m_aCube[4][5];
+            backHand[3] = m_aCube[5][5];
+            backHand[4] = m_aCube[7][3];
+            backHand[5] = m_aCube[7][2];
+            backHand[6] = m_aCube[5][0];
+            backHand[7] = m_aCube[4][0];
+
+            shiftLeft(backHand);
+            shiftLeft(backHand);
+            shiftRight(backBack);
+
+            m_aCube[1][3] = backBack[0];
+            m_aCube[1][2] = backBack[1];
+            m_aCube[0][2] = backBack[2];
+            m_aCube[0][3] = backBack[3];
+
+            m_aCube[2][2] = backHand[0];
+            m_aCube[2][3] = backHand[1];
+            m_aCube[4][5] = backHand[2];
+            m_aCube[5][5] = backHand[3];
+            m_aCube[7][3] = backHand[4];
+            m_aCube[7][2] = backHand[5];
+            m_aCube[5][0] = backHand[6];
+            m_aCube[4][0] = backHand[7];
+        }
+    public void turnBPrime() {
+        char[] backBack = new char[4];
+        backBack[0] = m_aCube[1][3];
+        backBack[1] = m_aCube[1][2];
+        backBack[2] = m_aCube[0][2];
+        backBack[3] = m_aCube[0][3];
+
+        char[] backHand = new char[8];
+        backHand[0] = m_aCube[2][2];
+        backHand[1] = m_aCube[2][3];
+        backHand[2] = m_aCube[4][5];
+        backHand[3] = m_aCube[5][5];
+        backHand[4] = m_aCube[7][3];
+        backHand[5] = m_aCube[7][2];
+        backHand[6] = m_aCube[5][0];
+        backHand[7] = m_aCube[4][0];
+
+        shiftRight(backHand);
+        shiftRight(backHand);
+        shiftLeft(backBack);
+
+        m_aCube[1][3] = backBack[0];
+        m_aCube[1][2] = backBack[1];
+        m_aCube[0][2] = backBack[2];
+        m_aCube[0][3] = backBack[3];
+
+        m_aCube[2][2] = backHand[0];
+        m_aCube[2][3] = backHand[1];
+        m_aCube[4][5] = backHand[2];
+        m_aCube[5][5] = backHand[3];
+        m_aCube[7][3] = backHand[4];
+        m_aCube[7][2] = backHand[5];
+        m_aCube[5][0] = backHand[6];
+        m_aCube[4][0] = backHand[7];
+    }
     
     public void shiftLeft(char[] aChar) {
         char cHold = aChar[0];
