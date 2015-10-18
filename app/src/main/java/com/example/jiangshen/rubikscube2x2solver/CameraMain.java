@@ -2,10 +2,12 @@ package com.example.jiangshen.rubikscube2x2solver;
 
 import android.content.Intent;
 import android.hardware.Camera;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class CameraMain extends AppCompatActivity {
 
@@ -14,19 +16,57 @@ public class CameraMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_main);
 
-        findViewById(R.id.camera_button).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.cameraView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+                onCapture();
+
+                //to start camera
+                //startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
             }
         });
 
 
+
+
+
+
+
+        ImageProcessor.setLabel((TextView) findViewById(R.id.textInstr));
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        View verticalLine = findViewById(R.id.vertical_line);
+        View horizontalLine = findViewById(R.id.horizontal_line);
+        View box = findViewById(R.id.box);
+        View squareFrameLayout = findViewById(R.id.square_framelayout);
+
+        float boxX = box.getX();
+        float boxY = box.getY();
+        int left = verticalLine.getLeft();
+        ImageProcessor.setDimension((int) (box.getX() - squareFrameLayout.getX()), (int) (box.getY() - squareFrameLayout.getY()),
+                horizontalLine.getWidth(), verticalLine.getHeight());
+    }
+
+    //    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
+
+    protected void onCapture() {
+//        TextView t = (TextView)findViewById(R.id.textInstr);
+        //t.setText("PHOTOS TAKEN");
+
+        CameraView c = (CameraView) findViewById(R.id.cameraView);
+        c.takePhoto();
+
+        //capture
+        //set text
+
+
     }
 
 
