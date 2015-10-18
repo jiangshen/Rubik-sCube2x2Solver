@@ -28,12 +28,9 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[4][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
@@ -41,12 +38,9 @@ public class Cube {
 
         getCube()[1][2] = aEight[0];
         getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
+        for (int i = 2; i < 8; i++) {
+            getCube()[4][7 - i] = aEight[i];
+        }
     }
 
     public void turnUPrime() {
@@ -69,12 +63,9 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[4][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftLeft(aEight);
@@ -82,12 +73,9 @@ public class Cube {
 
         getCube()[1][2] = aEight[0];
         getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
+        for (int i = 2; i < 8; i++) {
+            getCube()[4][7 - i] = aEight[i];
+        }
     }
 
     public void turnD() {
@@ -110,31 +98,55 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[0][2];
         aEight[1] = getCube()[0][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[5][7 - i];
+        }
+        
+        for(int i = 0; i < 2; i++) {
+            shiftLeft(aEight);
+        }
+
+        getCube()[0][2] = aEight[0];
+        getCube()[0][3] = aEight[1];
+        for (int i = 2; i < 8; i++) {
+            getCube()[5][7 - i] = aEight[i];
+        }
+    }
+
+    public void turnDPrime() {
+        char[] aFour = new char[4]; //the top layer in this case
+        aFour[0] = getCube()[6][2];
+        aFour[1] = getCube()[6][3];
+        aFour[2] = getCube()[7][3];
+        aFour[3] = getCube()[7][2];
+        
+        shiftLeft(aFour);
+        
+        //reverse assign
+        getCube()[6][2] = aFour[0];
+        getCube()[6][3] = aFour[1];
+        getCube()[7][3] = aFour[2];
+        getCube()[7][2] = aFour[3];
+
+        
+        
+        char[] aEight = new char[8]; //this is the other four layers
+        aEight[0] = getCube()[0][2];
+        aEight[1] = getCube()[0][3];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[5][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
         }
 
-        getCube()[1][2] = aEight[0];
-        getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
+        getCube()[0][2] = aEight[0];
+        getCube()[0][3] = aEight[1];
+        for (int i = 2; i < 8; i++) {
+            getCube()[5][7 - i] = aEight[i];
+        }
     }
-
-    public void turnDPrime() {
-
-    }
-
 
     public void turnL() {
         char[] leftLeft = new char[4];
@@ -158,8 +170,8 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
-
     }
+
     public void turnLPrime() {
         char[] leftLeft = new char[4];
         char[] leftHand = new char[8];
@@ -184,6 +196,7 @@ public class Cube {
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
     }
+
     public void turnR() {
         char[] rightRight = new char[4];
         char[] rightHand = new char[8];
@@ -207,8 +220,8 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
-
     }
+
     public void turnRPrime() {
         char[] rightRight = new char[4];
         char[] rightHand = new char[8];
@@ -233,6 +246,7 @@ public class Cube {
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
     }
+
     public void turnF() {
         char[] frontFront = new char[4];
         frontFront[0] = m_aCube[4][2];
@@ -306,8 +320,36 @@ public class Cube {
         m_aCube[5][1] = frontHand[6] ;
         m_aCube[4][1] = frontHand[7];
     }
-
     
+    public void turnX() {
+        turnR();
+        turnLPrime();
+    }
+
+    public void turnXPrime() {
+        turnRPrime();
+        turnL();
+    }
+
+    public void turnY() {
+        turnU();
+        turnDPrime();
+    }
+    public void turnYPrime() {
+        turnUPrime();
+        turnD();
+    }
+
+    public void turnZ() {
+        turnF()
+        turnBPrime();
+    }
+
+    public void turnZPrime() {
+        turnFPrime();
+        turnB();
+    }
+
     public void shiftLeft(char[] aChar) {
         char cHold = aChar[0];
         for (int i = 0; i < aChar.length - 1; i++) {
