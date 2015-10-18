@@ -8,11 +8,11 @@ public class Cube {
 
     public Cube(char[][] aCube) {
         m_aCube = aCube;
-        updateBoolean();
+        updateBotBoolean();
     }
 
 
-    public void updateBoolean() {
+    public void updateBotBoolean() {
         //bBack
         //check back row for white piece, if there is, then false
         if (getCube()[7][2] == 'w' || getCube()[7][3] == 'w') {
@@ -40,6 +40,37 @@ public class Cube {
             m_bLeft = false;
         } else {
             m_bLeft = true;
+        }
+    }
+
+    public void updateTopBoolean() {
+        
+        //check back row for white piece, if there is, then false
+        if (getCube()[2][2] == 'y' || getCube()[2][3] == 'y') {
+            m_bBack = true;
+        } else {
+            m_bBack = false;
+        }
+
+        //front
+        if (getCube()[3][2] == 'y' || getCube()[3][3] == 'y') {
+            m_bFront = true;
+        } else {
+            m_bFront = false;
+        }
+
+        //right
+        if (getCube()[2][3] == 'y' || getCube()[3][3] == 'y') {
+            m_bRight = true;
+        } else {
+            m_bRight = false;
+        }
+
+        //left
+        if (getCube()[2][2] == 'y' || getCube()[3][2] == 'y') {
+            m_bLeft = true;
+        } else {
+            m_bLeft = false;
         }
     }
 
@@ -487,20 +518,147 @@ public class Cube {
         aChar[0] = cHold;
     }
 
-
-
     public void solveFirstLayer() {
-        //check if we can free turn
+        // as long as the first layer isn't solved
+        updateBotBoolean();
+        if (getCube()[6][2] != 'w' || getCube()[6][3] != 'w' ||  getCube()[7][2] != 'w' ||  getCube()[7][3] != 'w')
+        {
+            //check if we can free turn
 
-        //check right
-        if (m_bRight) {
-            //check 2 by 2
-            if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
-                turnRPrime();
+            //check right
+            if (m_bRight) {
+                //check 2 by 2
+                if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
+                    turnRPrime();
+                    solveFirstLayer();
+                } else if (getCube()[0][3] == 'w' || getCube()[1][3] == 'w') {
+                    turnR();
+                    solveFirstLayer();
+                } else if (getCube()[2][3] == 'w' || getCube()[3][3] == 'w') {
+                    turnR();
+                    turnR();
+                    solveFirstLayer();
+                }
+            } else if (m_bFront) {
+                if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
+                    turnRPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
+                    turnF();
+                    solveFirstLayer();
+                } else if (getCube()[3][2] == 'w' || getCube()[3][3] == 'w') {
+                    turnF();
+                    turnF();
+                    solveFirstLayer();
+                }
+            } else if (m_bLeft) {
+                if (getCube()[0][2] == 'w' || getCube()[1][2] == 'w') {
+                    turnLPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][2] == 'w' || getCube()[5][2] == 'w') {
+                    turnL();
+                    solveFirstLayer();
+                } else if (getCube()[2][2] == 'w' || getCube()[3][2] == 'w') {
+                    turnL();
+                    turnL();
+                    solveFirstLayer();
+                }
+            } else if (m_bBack) {
+                if (getCube()[4][4] == 'w' || getCube()[4][5] == 'w') {
+                    turnBPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][0] == 'w' || getCube()[4][1] == 'w') {
+                    turnB();
+                    solveFirstLayer();
+                } else if (getCube()[2][2] == 'w' || getCube()[2][3] == 'w') {
+                    turnB();
+                    turnB();
+                    solveFirstLayer();
+                }
             }
         }
     }
 
+    public void orientateOLL() {
+        updateTopBoolean();
+        if (m_bBack) {
+            turnU();
+        } else if (m_bLeft) {
+            turnU();
+            turnU();
+        } else if (m_bFront) {
+            turnUPrime();
+        } 
+        updateTopBoolean();
+        if (m_bFront) {
+            if (m_aCube[4][2] == 'y') {
+                oll_T();
+            } else {
+                oll_U();
+            }
+        }
+        if (m_aCube[3][2] == 'y' && m_aCube[2][3] == 'y') {
+            turnU();
+        }
+        if (m_aCube[2][2] == 'y' && m_aCube[3][3] == 'y') {
+            if (m_aCube[4][2] == 'y') {
+                oll_L();
+            } else {
+                turnU();
+                turnU();
+                oll_L();
+            }
+        }
+        if (checkSune()) {
+            if (m_aCube[2][2] == 'y') {
+                turnUPrime();
+            } else if (m_aCube[2][3] == 'y') {
+                turnU();
+                turnU();
+            } else if (m_aCube[3][3] == 'y') {
+                turnU();
+            }
+            if (m_aCube[4][3] == 'y') {
+                oll_S();
+            } else {
+                turnU();
+                turnU();
+                oll_As();
+            }
+        }
+        if (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') {
+            if (m_aCube[4][2] != 'y' && m_aCube[4][3] != 'y') {
+                if (m_aCube[4][4] == 'y' && m_aCube[4][5] == 'y') {
+                    turnU();
+                    oll_H();
+                } else {
+                    turnUPrime();
+                    oll_Pi();
+                }
+            }
+            if (m_aCube[4][2] == 'y' && m_aCube[4][3] == 'y') {
+                if (m_aCube[4][5] == 'y') {
+                    turnU();
+                    oll_Pi();
+                } else {
+                    oll_H();
+                }
+            }
+            if (m_aCube[4][2] != 'y' && m_aCube[4][3] == 'y') {
+                oll_Pi();
+            } else if (m_aCube[4][2] == 'y' && m_aCube[4][3] != 'y') {
+                turnUPrime();
+                turnUPrime();
+                oll_Pi();
+            }
+        }
+    }
+    public boolean checkSune() {
+        return (m_aCube[2][2] == 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') ||
+                (m_aCube[2][2] != 'y' && m_aCube[2][3] == 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') ||
+                (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] == 'y' && m_aCube[3][3] != 'y') ||
+                (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] == 'y');
+    }
     public void oll_U() {
         turnF();
         turnR();
