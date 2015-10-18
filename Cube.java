@@ -541,8 +541,7 @@ public class Cube {
             aBotFace[0] = getCube()[6][2];
             aBotFace[1] = getCube()[6][3];
             aBotFace[2] = getCube()[7][2];
-            aBotFace[3] = getCube()[7][3];  
-            System.out.println(this);
+            aBotFace[3] = getCube()[7][3];
             if (aBotFace[0] != 'w') {
                 turnD();
             } else if (aBotFace[3] != 'w') {
@@ -624,7 +623,6 @@ public class Cube {
     }
 
     public void findFLAlg() {
-        System.out.println("Here");
         if (getCube()[4][3] == 'w') {
             turnU();
             turnR();
@@ -672,7 +670,6 @@ public class Cube {
             if (c == 'y')
                 nSolved++;
         }
-        System.out.println(nSolved);
         if (nSolved == 0) {
             //check number of doubles
             int nDouble = 0;
@@ -728,6 +725,9 @@ public class Cube {
             }
         } else if (nSolved == 2) {
             boolean bPass = true;
+            for (int i = 0; i < 4; i++) {
+                System.out.println(aTopFace[i]);
+            }
             if (aTopFace[0] == 'y' && aTopFace[1] == 'y') {
                 turnU();
             } else if (aTopFace[1] == 'y' && aTopFace[2] == 'y') {
@@ -748,21 +748,20 @@ public class Cube {
                     oll_T();
                 }
             } else {
+                System.out.println(aTopFace[1] == 'y');
+                System.out.println(getCube()[4][2]);
                 if (aTopFace[0] == 'y') {
                     if (getCube()[4][2] == 'y') {
                         //we're good!
+                    } else if (getCube()[1][3] == 'y') {
+                        turnU();
+                        turnU();
                     }
-                } else if (aTopFace[1] == 'y') {
+                }
+                if (aTopFace[1] == 'y') {
                     if (getCube()[4][0] == 'y') {
                         turnUPrime();
-                    }
-                } else if (aTopFace[2] == 'y') {
-                    if (getCube()[1][3] == 'y') {
-                        turnU();
-                        turnU();
-                    }
-                } else if (aTopFace[3] == 'y') {
-                    if (getCube()[4][4] == 'y') {
+                    } else if (getCube()[4][4] == 'y') {
                         turnU();
                     }
                 }
@@ -833,7 +832,6 @@ public class Cube {
         if (nBotPairs == 4) {
             bBotSolved = true;
         }
-        System.out.println(nBotPairs);
         if (!bBotSolved && bTopSolved) {
             turnX();
             turnX();
@@ -843,8 +841,6 @@ public class Cube {
         }
         if (!bTopSolved && bBotSolved) {
             //Here are the 4 on top, only need to include 2.
-            System.out.println(nTopLocation);
-            System.out.println(nTopPairs);
             if (nTopLocation > -1) {
                 //AUF
                 if (nTopLocation == 1) {
@@ -1114,8 +1110,56 @@ public class Cube {
         turnR();
     }
 
-    public void cleanOutput() {
+    public String cleanOutput() {
         //TODO Things like UUU or U U' or etc.
+        String szOutput = m_szSolve;
+        do  {
+
+            szOutput = clean(szOutput);
+        } while (szOutput != clean(szOutput));
+
+        return szOutput;
+    }
+
+    public String clean(String szInput) {
+        String szOutput = szInput;
+        szOutput = szOutput.replace("U UPrime ", "");
+        szOutput = szOutput.replace("D DPrime ", "");
+        szOutput = szOutput.replace("L LPrime ", "");
+        szOutput = szOutput.replace("R RPrime ", "");
+        szOutput = szOutput.replace("F FPrime ", "");
+        szOutput = szOutput.replace("B BPrime ", "");
+        szOutput = szOutput.replace("UPrime U ", "");
+        szOutput = szOutput.replace("DPrime D ", "");
+        szOutput = szOutput.replace("LPrime L ", "");
+        szOutput = szOutput.replace("RPrime R ", "");
+        szOutput = szOutput.replace("FPrime F ", "");
+        szOutput = szOutput.replace("BPrime B ", "");
+        szOutput = szOutput.replace("U U U ", "UPrime ");
+        szOutput = szOutput.replace("UPrime UPrime UPrime ", "U ");
+        szOutput = szOutput.replace("L L L ", "LPrime ");
+        szOutput = szOutput.replace("LPrime LPrime LPrime ", "L ");
+        szOutput = szOutput.replace("D D D ", "DPrime ");
+        szOutput = szOutput.replace("DPrime DPrime DPrime ", "D ");
+        szOutput = szOutput.replace("R R R ", "RPrime ");
+        szOutput = szOutput.replace("RPrime RPrime RPrime ", "R ");
+        szOutput = szOutput.replace("F F F ", "FPrime ");
+        szOutput = szOutput.replace("FPrime FPrime FPrime ", "F ");
+        szOutput = szOutput.replace("B B B ", "BPrime ");
+        szOutput = szOutput.replace("BPrime BPrime BPrime ", "B ");
+        szOutput = szOutput.replace("U U ", "U2 ");
+        szOutput = szOutput.replace("UPrime UPrime ", "U2 ");
+        szOutput = szOutput.replace("L L ", "L2 ");
+        szOutput = szOutput.replace("LPrime LPrime ", "L2 ");
+        szOutput = szOutput.replace("D D ", "D2 ");
+        szOutput = szOutput.replace("DPrime DPrime ", "D2 ");
+        szOutput = szOutput.replace("B B ", "B2 ");
+        szOutput = szOutput.replace("BPrime BPrime ", "B2 ");
+        szOutput = szOutput.replace("F F ", "F2 ");
+        szOutput = szOutput.replace("FPrime FPrime ", "F2 ");
+        szOutput = szOutput.replace("R R ", "R2 ");
+        szOutput = szOutput.replace("RPrime RPrime ", "R2 ");
+        return szOutput;
     }
 
     @Override
