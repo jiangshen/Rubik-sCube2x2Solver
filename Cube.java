@@ -148,7 +148,6 @@ public class Cube {
         }
     }
 
-
     public void turnL() {
         char[] leftLeft = new char[4];
         char[] leftHand = new char[8];
@@ -171,8 +170,8 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
-
     }
+
     public void turnLPrime() {
         char[] leftLeft = new char[4];
         char[] leftHand = new char[8];
@@ -197,6 +196,7 @@ public class Cube {
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
     }
+
     public void turnR() {
         char[] rightRight = new char[4];
         char[] rightHand = new char[8];
@@ -220,8 +220,8 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
-
     }
+
     public void turnRPrime() {
         char[] rightRight = new char[4];
         char[] rightHand = new char[8];
@@ -246,6 +246,7 @@ public class Cube {
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
     }
+
     public void turnF() {
         char[] frontFront = new char[4];
         frontFront[0] = m_aCube[4][2];
@@ -319,8 +320,36 @@ public class Cube {
         m_aCube[5][1] = frontHand[6] ;
         m_aCube[4][1] = frontHand[7];
     }
-
     
+    public void turnX() {
+        turnR();
+        turnLPrime();
+    }
+
+    public void turnXPrime() {
+        turnRPrime();
+        turnL();
+    }
+
+    public void turnY() {
+        turnU();
+        turnDPrime();
+    }
+    public void turnYPrime() {
+        turnUPrime();
+        turnD();
+    }
+
+    public void turnZ() {
+        turnF()
+        turnBPrime();
+    }
+
+    public void turnZPrime() {
+        turnFPrime();
+        turnB();
+    }
+
     public void shiftLeft(char[] aChar) {
         char cHold = aChar[0];
         for (int i = 0; i < aChar.length - 1; i++) {
