@@ -9,6 +9,7 @@ public class Cube {
     public Cube(char[][] aCube) {
         m_aCube = aCube;
         updateBotBoolean();
+        m_szSolve = "";
     }
 
 
@@ -110,7 +111,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[4][7 - i] = aEight[i];
         }
-        m_szSolve =+ "U ";
+        m_szSolve += "U ";
     }
 
     public void turnUPrime() {
@@ -146,7 +147,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[4][7 - i] = aEight[i];
         }
-        m_szSolve =+ "UPrime ";
+        m_szSolve += "UPrime ";
     }
 
     public void turnD() {
@@ -182,7 +183,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[5][7 - i] = aEight[i];
         }
-        m_szSolve =+ "D ";
+        m_szSolve += "D ";
     }
 
     public void turnDPrime() {
@@ -218,7 +219,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[5][7 - i] = aEight[i];
         }
-        m_szSolve =+ "DPrime ";
+        m_szSolve += "DPrime ";
     }
 
     public void turnL() {
@@ -243,7 +244,7 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
-        m_szSolve =+ "L ";
+        m_szSolve += "L ";
     }
 
     public void turnLPrime() {
@@ -269,7 +270,7 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
-        m_szSolve =+ "LPrime ";
+        m_szSolve += "LPrime ";
     }
 
     public void turnR() {
@@ -295,7 +296,7 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
-        m_szSolve =+ "R ";
+        m_szSolve += "R ";
     }
 
     public void turnRPrime() {
@@ -321,7 +322,7 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
-        m_szSolve =+ "RPrime ";
+        m_szSolve += "RPrime ";
     }
 
     public void turnF() {
@@ -359,7 +360,7 @@ public class Cube {
         m_aCube[6][2] = frontHand[5];
         m_aCube[5][1] = frontHand[6];
         m_aCube[4][1] = frontHand[7];
-        m_szSolve =+ "F ";
+        m_szSolve += "F ";
     }
     public void turnFPrime() {
         char[] frontFront = new char[4];
@@ -396,7 +397,7 @@ public class Cube {
         m_aCube[6][2] = frontHand[5];
         m_aCube[5][1] = frontHand[6];
         m_aCube[4][1] = frontHand[7];
-        m_szSolve =+ "FPrime ";
+        m_szSolve += "FPrime ";
     }
 
     public void turnB() {
@@ -433,7 +434,7 @@ public class Cube {
         m_aCube[7][2] = backHand[5];
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
-        m_szSolve =+ "B ";
+        m_szSolve += "B ";
     }
 
     public void turnBPrime() {
@@ -470,7 +471,7 @@ public class Cube {
         m_aCube[7][2] = backHand[5];
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
-        m_szSolve =+ "B' ";
+        m_szSolve += "B' ";
     }
     
     public void turnX() {
@@ -493,7 +494,7 @@ public class Cube {
     }
 
     public void turnZ() {
-        turnF()
+        turnF();
         turnBPrime();
     }
 
@@ -526,7 +527,7 @@ public class Cube {
         aBotFace[1] = getCube()[6][3];
         aBotFace[2] = getCube()[7][2];
         aBotFace[3] = getCube()[7][3];
-        updateBoolean();
+        updateBotBoolean();
 
         while (aBotFace[0] != 'w' || aBotFace[1] != 'w' ||  aBotFace[2] != 'w' ||  aBotFace[3] != 'w')
         {
@@ -542,24 +543,21 @@ public class Cube {
             aBotFace[2] = getCube()[7][2];
             aBotFace[3] = getCube()[7][3];  
             System.out.println(this);
-            System.out.println(aBotFace[2]);
             if (aBotFace[0] != 'w') {
-                turnD();
-            } else if (aBotFace[2] != 'w') {
-                turnD();
                 turnD();
             } else if (aBotFace[3] != 'w') {
                 turnDPrime();
-            }
+            } else if (aBotFace[2] != 'w') {
+                turnD();
+                turnD();
+            } 
 
-            System.out.println("Done");
-
-            if (getCube()[4][0] == 'w' || getCube()[2][2] == 'w' || getCube()[1][2] == 'w') {
-                turnU();
+            if (getCube()[2][3] == 'w' || getCube()[1][3] == 'w' || getCube()[4][5] == 'w') {
                 turnU();
             } else if (getCube()[4][2] == 'w' || getCube()[4][1] == 'w' || getCube()[3][2] == 'w') {
                 turnUPrime();
-            } else if (getCube()[2][3] == 'w' || getCube()[1][3] == 'w' || getCube()[4][5] == 'w') {
+            } else if (getCube()[4][0] == 'w' || getCube()[2][2] == 'w' || getCube()[1][2] == 'w') {
+                turnU();
                 turnU();
             }
             //call alg here
@@ -569,7 +567,7 @@ public class Cube {
     }
 
     public void freeTurn() {
-        updateBoolean();
+        updateBotBoolean();
         //check if we can free turn
 
         //check right
@@ -589,7 +587,7 @@ public class Cube {
             
         } else if (m_bFront) {
             if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
-                turnRPrime();
+                turnFPrime();
                 freeTurn();
             } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
                 turnF();
@@ -626,6 +624,7 @@ public class Cube {
     }
 
     public void findFLAlg() {
+        System.out.println("Here");
         if (getCube()[4][3] == 'w') {
             turnU();
             turnR();
@@ -638,7 +637,7 @@ public class Cube {
             turnUPrime();
             turnR();
             turnR();
-        } else if (getCube()[4][5] == 'w') {
+        } else if (getCube()[4][4] == 'w') {
             turnR();
             turnU();
             turnRPrime();
@@ -661,86 +660,117 @@ public class Cube {
         }
     }
 
-    public void orientateOLL() {
-        updateTopBoolean();
-        if (m_bBack) {
-            turnU();
-        } else if (m_bLeft) {
-            turnU();
-            turnU();
-        } else if (m_bFront) {
-            turnUPrime();
-        } 
-        updateTopBoolean();
-        if (m_bFront) {
-            if (m_aCube[4][2] == 'y') {
-                oll_T();
-            } else {
-                oll_U();
+    public void orientLL() {
+        char[] aTopFace = new char[4];
+        aTopFace[0] = getCube()[2][2];
+        aTopFace[1] = getCube()[2][3];
+        aTopFace[2] = getCube()[3][3];
+        aTopFace[3] = getCube()[3][2];
+        int nSolved = 0;
+
+        for(char c : aTopFace) {
+            if (c == 'y')
+                nSolved++;
+        }
+        System.out.println(nSolved);
+        if (nSolved == 0) {
+            //check number of doubles
+            int nDouble = 0;
+            int nLocation = -1;
+            if (getCube()[4][0] == 'y' && getCube()[4][1] == 'y') {
+                nDouble++;
+                nLocation = 0;
             }
-        }
-        if (m_aCube[3][2] == 'y' && m_aCube[2][3] == 'y') {
-            turnU();
-        }
-        if (m_aCube[2][2] == 'y' && m_aCube[3][3] == 'y') {
-            if (m_aCube[4][2] == 'y') {
-                oll_L();
-            } else {
-                turnU();
-                turnU();
-                oll_L();
+            if (getCube()[4][2] == 'y' && getCube()[4][3] == 'y') {
+                nDouble++;
+                nLocation = 1;
             }
-        }
-        if (checkSune()) {
-            if (m_aCube[2][2] == 'y') {
+            if (getCube()[4][4] == 'y' && getCube()[4][5] == 'y') {
+                nDouble++; 
+                nLocation = 2;
+            } 
+            if(getCube()[1][2] == 'y' && getCube()[1][3] == 'y') {
+                nDouble++;
+                nLocation = 3;
+            }
+
+            if (nDouble == 1) {
+                if (nLocation == 1)
+                    turnU();
+                else if (nLocation == 2) {
+                    turnU();
+                    turnU();
+                } else if (nLocation == 3)
+                    turnUPrime();
+
+                oll_Pi();
+            } else if (nDouble == 2) {
+                if (nLocation == 0 || nLocation == 2) {
+                    turnU();
+                }
+                oll_H();
+            }
+        } else if (nSolved == 1) {
+            //AUF
+            if (aTopFace[0] == 'y') {
                 turnUPrime();
-            } else if (m_aCube[2][3] == 'y') {
+            } else if (aTopFace[1] == 'y') {
                 turnU();
                 turnU();
-            } else if (m_aCube[3][3] == 'y') {
+            } else if (aTopFace[2] == 'y') {
                 turnU();
             }
-            if (m_aCube[4][3] == 'y') {
+
+            if (getCube()[4][3] == 'y') {
                 oll_S();
             } else {
-                turnU();
-                turnU();
                 oll_As();
             }
-        }
-        if (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') {
-            if (m_aCube[4][2] != 'y' && m_aCube[4][3] != 'y') {
-                if (m_aCube[4][4] == 'y' && m_aCube[4][5] == 'y') {
-                    turnU();
-                    oll_H();
-                } else {
-                    turnUPrime();
-                    oll_Pi();
-                }
-            }
-            if (m_aCube[4][2] == 'y' && m_aCube[4][3] == 'y') {
-                if (m_aCube[4][5] == 'y') {
-                    turnU();
-                    oll_Pi();
-                } else {
-                    oll_H();
-                }
-            }
-            if (m_aCube[4][2] != 'y' && m_aCube[4][3] == 'y') {
-                oll_Pi();
-            } else if (m_aCube[4][2] == 'y' && m_aCube[4][3] != 'y') {
+        } else if (nSolved == 2) {
+            boolean bPass = true;
+            if (aTopFace[0] == 'y' && aTopFace[1] == 'y') {
+                turnU();
+            } else if (aTopFace[1] == 'y' && aTopFace[2] == 'y') {
+                //oriented correctly
+            } else if (aTopFace[2] == 'y' && aTopFace[3] == 'y') {
                 turnUPrime();
-                turnUPrime();
-                oll_Pi();
+            } else if (aTopFace[3] == 'y' && aTopFace[0] == 'y') {
+                turnU();
+                turnU();
+            } else {
+                bPass = false;
+            }
+
+            if (bPass) {
+                if (getCube()[4][0] == 'y' && getCube()[4][1] == 'y') {
+                    oll_U();
+                } else {
+                    oll_T();
+                }
+            } else {
+                if (aTopFace[0] == 'y') {
+                    if (getCube()[4][2] == 'y') {
+                        //we're good!
+                    }
+                } else if (aTopFace[1] == 'y') {
+                    if (getCube()[4][0] == 'y') {
+                        turnUPrime();
+                    }
+                } else if (aTopFace[2] == 'y') {
+                    if (getCube()[1][3] == 'y') {
+                        turnU();
+                        turnU();
+                    }
+                } else if (aTopFace[3] == 'y') {
+                    if (getCube()[4][4] == 'y') {
+                        turnU();
+                    }
+                }
+                oll_L();
             }
         }
     }
-    public boolean checkSune() {
-        return (m_aCube[2][2] == 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') ||
-                (m_aCube[2][2] != 'y' && m_aCube[2][3] == 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] != 'y') ||
-                (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] == 'y' && m_aCube[3][3] != 'y') ||
-                (m_aCube[2][2] != 'y' && m_aCube[2][3] != 'y' && m_aCube[3][2] != 'y' && m_aCube[3][3] == 'y');
-    }
+
     public void oll_U() {
         turnF();
         turnR();
@@ -777,7 +807,7 @@ public class Cube {
         turnR();
         turnU();
         turnRPrime();
-        turnUPrime();
+        turnU();
         turnR();
         turnU();
         turnU();
@@ -785,14 +815,14 @@ public class Cube {
     }
 
     public void oll_As() {
-        turnR();
+        turnL();
         turnU();
         turnU();
-        turnRPrime();
+        turnLPrime();
         turnUPrime();
-        turnR();
+        turnL();
         turnUPrime();
-        turnRPrime();
+        turnLPrime();
     }
 
     public void oll_Pi() {
