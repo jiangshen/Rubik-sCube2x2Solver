@@ -496,13 +496,62 @@ public class Cube {
 
 
     public void solveFirstLayer() {
-        //check if we can free turn
+        // as long as the first layer isn't solved
+        updateBoolean();
+        if (getCube()[6][2] != 'w' || getCube()[6][3] != 'w' ||  getCube()[7][2] != 'w' ||  getCube()[7][3] != 'w')
+        {
+            //check if we can free turn
 
-        //check right
-        if (m_bRight) {
-            //check 2 by 2
-            if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
-                turnRPrime();
+            //check right
+            if (m_bRight) {
+                //check 2 by 2
+                if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
+                    turnRPrime();
+                    solveFirstLayer();
+                } else if (getCube()[0][3] == 'w' || getCube()[1][3] == 'w') {
+                    turnR();
+                    solveFirstLayer();
+                } else if (getCube()[2][3] == 'w' || getCube()[3][3] == 'w') {
+                    turnR();
+                    turnR();
+                    solveFirstLayer();
+                }
+            } else if (m_bFront) {
+                if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
+                    turnRPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
+                    turnF();
+                    solveFirstLayer();
+                } else if (getCube()[3][2] == 'w' || getCube()[3][3] == 'w') {
+                    turnF();
+                    turnF();
+                    solveFirstLayer();
+                }
+            } else if (m_bLeft) {
+                if (getCube()[0][2] == 'w' || getCube()[1][2] == 'w') {
+                    turnLPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][2] == 'w' || getCube()[5][2] == 'w') {
+                    turnL();
+                    solveFirstLayer();
+                } else if (getCube()[2][2] == 'w' || getCube()[3][2] == 'w') {
+                    turnL();
+                    turnL();
+                    solveFirstLayer();
+                }
+            } else if (m_bBack) {
+                if (getCube()[4][4] == 'w' || getCube()[4][5] == 'w') {
+                    turnBPrime();
+                    solveFirstLayer();
+                } else if (getCube()[4][0] == 'w' || getCube()[4][1] == 'w') {
+                    turnB();
+                    solveFirstLayer();
+                } else if (getCube()[2][2] == 'w' || getCube()[2][3] == 'w') {
+                    turnB();
+                    turnB();
+                    solveFirstLayer();
+                }
             }
         }
     }
