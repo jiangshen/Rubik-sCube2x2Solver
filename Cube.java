@@ -1,8 +1,46 @@
 public class Cube {
     char[][] m_aCube;
+    boolean m_bBack;
+    boolean m_bFront;
+    boolean m_bRight;
+    boolean m_bLeft;
+    String m_szSolve;
 
     public Cube(char[][] aCube) {
         m_aCube = aCube;
+        updateBoolean();
+    }
+
+
+    public void updateBoolean() {
+        //bBack
+        //check back row for white piece, if there is, then false
+        if (getCube()[7][2] == 'w' || getCube()[7][3] == 'w') {
+            m_bBack = false;
+        } else {
+            m_bBack = true;
+        }
+
+        //front
+        if (getCube()[6][2] == 'w' || getCube()[6][3] == 'w') {
+            m_bFront = false;
+        } else {
+            m_bFront = true;
+        }
+
+        //right
+        if (getCube()[6][3] == 'w' || getCube()[7][3] == 'w') {
+            m_bRight = false;
+        } else {
+            m_bRight = true;
+        }
+
+        //left
+        if (getCube()[6][2] == 'w' || getCube()[7][2] == 'w') {
+            m_bLeft = false;
+        } else {
+            m_bLeft = true;
+        }
     }
 
     public void turnU() {
@@ -356,7 +394,7 @@ public class Cube {
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
     }
-        
+
     public void turnBPrime() {
         char[] backBack = new char[4];
         backBack[0] = m_aCube[1][3];
@@ -437,6 +475,21 @@ public class Cube {
         }
         aChar[0] = cHold;
     }
+
+
+
+    public void solveFirstLayer() {
+        //check if we can free turn
+
+        //check right
+        if (m_bRight) {
+            //check 2 by 2
+            if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
+                turnRPrime();
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
