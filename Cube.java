@@ -771,6 +771,104 @@ public class Cube {
         }
     }
 
+    public void permuteBL() {
+        boolean bTopSolved = false;
+        boolean bBotSolved = false;
+        char[] aTop = new char[8];
+        aTop[0] = getCube()[1][2];
+        aTop[1] = getCube()[1][3];
+        for (int i = 2; i < 8; i++) {
+            aTop[i] = getCube()[4][7 - i];
+        }
+
+        char[] aBot = new char[8];
+        aBot[0] = getCube()[0][2];
+        aBot[1] = getCube()[0][3];
+        for (int i = 2; i < 8; i++) {
+            aBot[i] = getCube()[5][7 - i];
+        }
+
+        int nTopPairs = 0;
+        int nTopLocation = -1;
+        if (aTop[0] == aTop[1]) {
+            nTopPairs++;
+            nTopLocation = 1;
+        }
+        if (aTop[2] == aTop[3]) {
+            nTopPairs++;
+            nTopLocation = 2;
+        }
+        if (aTop[4] == aTop[5]) {
+            nTopPairs++;
+            nTopLocation = 3;
+        }
+        if (aTop[6] == aTop[7]) {
+            nTopPairs++;
+            nTopLocation = 0;
+        }
+
+        if (nTopPairs == 4) {
+            bTopSolved = true;
+        }
+
+        int nBotPairs = 0;
+        int nBotLocation = -1;
+        if (aBot[0] == aBot[1]) {
+            nBotPairs++;
+            nBotLocation = 3;
+        }
+        if (aBot[2] == aBot[3]) {
+            nBotPairs++;
+            nBotLocation = 2;
+        }
+        if (aBot[4] == aBot[5]) {
+            nBotPairs++;
+            nBotLocation = 1;
+        }
+        if (aBot[6] == aBot[7]) {
+            nBotPairs++;
+            nBotLocation = 0;
+        }
+
+        System.out.println(nBotPairs);
+        if (nBotPairs != 4 && bTopSolved) {
+            turnX();
+            turnX();
+            bBotSolved = true;
+            bTopSolved = false;
+            nTopLocation = nBotLocation;
+        }
+        if (!bTopSolved/* && bBotSolved*/) {
+            //Here are the 4 on top, only need to include 2.
+            System.out.println(nTopLocation);
+            System.out.println(nTopPairs);
+            if (nTopLocation > -1) {
+                //AUF
+                if (nTopLocation == 1) {
+                    turnUPrime();
+                } else if (nTopLocation == 2) {
+                    turnU();
+                    turnU();
+                } else if (nTopLocation == 3) {
+                    turnU();
+                }
+                pbl_TTop();
+            } else {
+                pbl_YTop();
+            }
+        }
+
+        //adjust top face
+        if (getCube()[4][4] == getCube()[5][2]) {
+            turnU();
+        } else if (getCube()[4][0] == getCube()[5][2]) {
+            turnUPrime();
+        } else if (getCube()[1][3] == getCube()[5][2]) {
+            turnU();
+            turnU();
+        }
+    }
+
     public void oll_U() {
         turnF();
         turnR();
