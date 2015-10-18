@@ -521,63 +521,98 @@ public class Cube {
     public void solveFirstLayer() {
         // as long as the first layer isn't solved
 
-        updateBotBoolean();
+        char[] aBotFace = new char[4];
+        aBotFace[0] = getCube()[6][2];
+        aBotFace[1] = getCube()[6][3];
+        aBotFace[2] = getCube()[7][2];
+        aBotFace[3] = getCube()[7][3];
+        updateBoolean();
 
-        if (getCube()[6][2] != 'w' || getCube()[6][3] != 'w' ||  getCube()[7][2] != 'w' ||  getCube()[7][3] != 'w')
+        if (aBotFace[0] != 'w' || aBotFace[1] != 'w' ||  aBotFace[2] != 'w' ||  aBotFace[3] != 'w')
         {
-            //check if we can free turn
+           
+            freeTurn();
+            // if this, then we can't free turn anymore.
 
-            //check right
-            if (m_bRight) {
-                //check 2 by 2
-                if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
-                    turnRPrime();
-                    solveFirstLayer();
-                } else if (getCube()[0][3] == 'w' || getCube()[1][3] == 'w') {
-                    turnR();
-                    solveFirstLayer();
-                } else if (getCube()[2][3] == 'w' || getCube()[3][3] == 'w') {
-                    turnR();
-                    turnR();
-                    solveFirstLayer();
-                }
-            } else if (m_bFront) {
-                if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
-                    turnRPrime();
-                    solveFirstLayer();
-                } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
-                    turnF();
-                    solveFirstLayer();
-                } else if (getCube()[3][2] == 'w' || getCube()[3][3] == 'w') {
-                    turnF();
-                    turnF();
-                    solveFirstLayer();
-                }
-            } else if (m_bLeft) {
-                if (getCube()[0][2] == 'w' || getCube()[1][2] == 'w') {
-                    turnLPrime();
-                    solveFirstLayer();
-                } else if (getCube()[4][2] == 'w' || getCube()[5][2] == 'w') {
-                    turnL();
-                    solveFirstLayer();
-                } else if (getCube()[2][2] == 'w' || getCube()[3][2] == 'w') {
-                    turnL();
-                    turnL();
-                    solveFirstLayer();
-                }
-            } else if (m_bBack) {
-                if (getCube()[4][4] == 'w' || getCube()[4][5] == 'w') {
-                    turnBPrime();
-                    solveFirstLayer();
-                } else if (getCube()[4][0] == 'w' || getCube()[4][1] == 'w') {
-                    turnB();
-                    solveFirstLayer();
-                } else if (getCube()[2][2] == 'w' || getCube()[2][3] == 'w') {
-                    turnB();
-                    turnB();
-                    solveFirstLayer();
-                }
+            //move the bottom layer so the empty slot is in the front right
+            //move the top layer so the target piece is on the front right.
+            //call the right alg.
+            aBotFace[0] = getCube()[6][2];
+            aBotFace[1] = getCube()[6][3];
+            aBotFace[2] = getCube()[7][2];
+            aBotFace[3] = getCube()[7][3];  
+            System.out.println(this);
+            System.out.println(aBotFace[2]);
+            if (aBotFace[0] != 'w') {
+                turnD();
+            } else if (aBotFace[2] != 'w') {
+                turnD();
+                turnD();
+            } else if (aBotFace[3] != 'w') {
+                turnDPrime();
             }
+
+            System.out.println("Done");
+
+            if (getCube()[4][0] == 'w' || getCube()[2][2] == 'w' || getCube()[1][2] == 'w') {
+                turnU();
+                turnU();
+            } else if (getCube()[4][2] == 'w' || getCube()[4][1] == 'w' || getCube()[3][2] == 'w') {
+                turnUPrime();
+            } else if (getCube()[2][3] == 'w' || getCube()[1][3] == 'w' || getCube()[4][5] == 'w') {
+                turnU();
+            }
+            //call alg here
+        }
+        //solved right here
+    }
+
+    public void freeTurn() {
+        updateBoolean();
+        //check if we can free turn
+
+        //check right
+        if (m_bRight) {
+            //check 2 by 2
+            if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
+                turnRPrime();
+            } else if (getCube()[0][3] == 'w' || getCube()[1][3] == 'w') {
+                turnR();
+            } else if (getCube()[2][3] == 'w' || getCube()[3][3] == 'w') {
+                turnR();
+                turnR();
+            }
+            freeTurn();
+        } else if (m_bFront) {
+            if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
+                turnRPrime();
+            } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
+                turnF();
+            } else if (getCube()[3][2] == 'w' || getCube()[3][3] == 'w') {
+                turnF();
+                turnF();
+            }
+            freeTurn();
+        } else if (m_bLeft) {
+            if (getCube()[0][2] == 'w' || getCube()[1][2] == 'w') {
+                turnLPrime();
+            } else if (getCube()[4][2] == 'w' || getCube()[5][2] == 'w') {
+                turnL();
+            } else if (getCube()[2][2] == 'w' || getCube()[3][2] == 'w') {
+                turnL();
+                turnL();
+            }
+            freeTurn();
+        } else if (m_bBack) {
+            if (getCube()[4][4] == 'w' || getCube()[5][5] == 'w') {
+                turnBPrime();
+            } else if (getCube()[4][0] == 'w' || getCube()[5][0] == 'w') {
+                turnB();
+            } else if (getCube()[2][2] == 'w' || getCube()[2][3] == 'w') {
+                turnB();
+                turnB();
+            }
+            freeTurn();
         }
     }
 
