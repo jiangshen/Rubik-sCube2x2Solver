@@ -528,7 +528,7 @@ public class Cube {
         aBotFace[3] = getCube()[7][3];
         updateBoolean();
 
-        if (aBotFace[0] != 'w' || aBotFace[1] != 'w' ||  aBotFace[2] != 'w' ||  aBotFace[3] != 'w')
+        while (aBotFace[0] != 'w' || aBotFace[1] != 'w' ||  aBotFace[2] != 'w' ||  aBotFace[3] != 'w')
         {
            
             freeTurn();
@@ -563,6 +563,7 @@ public class Cube {
                 turnU();
             }
             //call alg here
+            findFLAlg();
         }
         //solved right here
     }
@@ -576,43 +577,87 @@ public class Cube {
             //check 2 by 2
             if (getCube()[4][3] == 'w' || getCube()[5][3] == 'w') {
                 turnRPrime();
+                freeTurn();
             } else if (getCube()[0][3] == 'w' || getCube()[1][3] == 'w') {
                 turnR();
+                freeTurn();
             } else if (getCube()[2][3] == 'w' || getCube()[3][3] == 'w') {
                 turnR();
                 turnR();
+                freeTurn();
             }
-            freeTurn();
+            
         } else if (m_bFront) {
             if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
                 turnRPrime();
+                freeTurn();
             } else if (getCube()[4][4] == 'w' || getCube()[5][4] == 'w') {
                 turnF();
+                freeTurn();
             } else if (getCube()[3][2] == 'w' || getCube()[3][3] == 'w') {
                 turnF();
                 turnF();
+                freeTurn();
             }
-            freeTurn();
         } else if (m_bLeft) {
             if (getCube()[0][2] == 'w' || getCube()[1][2] == 'w') {
                 turnLPrime();
+                freeTurn();
             } else if (getCube()[4][2] == 'w' || getCube()[5][2] == 'w') {
                 turnL();
+                freeTurn();
             } else if (getCube()[2][2] == 'w' || getCube()[3][2] == 'w') {
                 turnL();
                 turnL();
+                freeTurn();
             }
-            freeTurn();
         } else if (m_bBack) {
             if (getCube()[4][4] == 'w' || getCube()[5][5] == 'w') {
                 turnBPrime();
             } else if (getCube()[4][0] == 'w' || getCube()[5][0] == 'w') {
                 turnB();
+                freeTurn();
             } else if (getCube()[2][2] == 'w' || getCube()[2][3] == 'w') {
                 turnB();
                 turnB();
+                freeTurn();
             }
-            freeTurn();
+        }
+    }
+
+    public void findFLAlg() {
+        if (getCube()[4][3] == 'w') {
+            turnU();
+            turnR();
+            turnUPrime();
+            turnRPrime();
+        } else if (getCube()[3][3] == 'w') {
+            turnU();
+            turnR();
+            turnR();
+            turnUPrime();
+            turnR();
+            turnR();
+        } else if (getCube()[4][5] == 'w') {
+            turnR();
+            turnU();
+            turnRPrime();
+        } else if (getCube()[5][3] == 'w') {
+            turnR();
+            turnUPrime();
+            turnRPrime();
+            turnU();
+            turnR();
+            turnUPrime();
+            turnRPrime();
+        } else if (getCube()[5][4] == 'w') {
+            turnR();
+            turnU();
+            turnRPrime();
+            turnUPrime();
+            turnR();
+            turnU();
+            turnRPrime();
         }
     }
 
