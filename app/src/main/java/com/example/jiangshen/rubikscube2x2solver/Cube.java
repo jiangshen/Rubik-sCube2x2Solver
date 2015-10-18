@@ -1,3 +1,8 @@
+package com.example.jiangshen.rubikscube2x2solver;
+
+/**
+ * Created by jiangshen on 10/18/15.
+ */
 public class Cube {
     char[][] m_aCube;
     boolean m_bBack;
@@ -10,6 +15,13 @@ public class Cube {
         m_aCube = aCube;
         updateBotBoolean();
         m_szSolve = "";
+    }
+
+    public void solve() {
+        //solve the cube
+        solveFirstLayer();
+        orientLL();
+        permuteBL();
     }
 
 
@@ -45,7 +57,7 @@ public class Cube {
     }
 
     public void updateTopBoolean() {
-        
+
         //check back row for white piece, if there is, then false
         if (getCube()[2][2] == 'y' || getCube()[2][3] == 'y') {
             m_bBack = true;
@@ -84,24 +96,24 @@ public class Cube {
         aFour[1] = getCube()[2][3];
         aFour[2] = getCube()[3][3];
         aFour[3] = getCube()[3][2];
-        
+
         shiftRight(aFour);
-        
+
         //reverse assign
         getCube()[2][2] = aFour[0];
         getCube()[2][3] = aFour[1];
         getCube()[3][3] = aFour[2];
         getCube()[3][2] = aFour[3];
 
-        
-        
+
+
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
         for (int i = 2; i < 8; i++) {
             aEight[i] = getCube()[4][7 - i];
         }
-        
+
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
         }
@@ -120,24 +132,24 @@ public class Cube {
         aFour[1] = getCube()[2][3];
         aFour[2] = getCube()[3][3];
         aFour[3] = getCube()[3][2];
-        
+
         shiftLeft(aFour);
-        
+
         //reverse assign
         getCube()[2][2] = aFour[0];
         getCube()[2][3] = aFour[1];
         getCube()[3][3] = aFour[2];
         getCube()[3][2] = aFour[3];
 
-        
-        
+
+
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
         for (int i = 2; i < 8; i++) {
             aEight[i] = getCube()[4][7 - i];
         }
-        
+
         for(int i = 0; i < 2; i++) {
             shiftLeft(aEight);
         }
@@ -156,24 +168,24 @@ public class Cube {
         aFour[1] = getCube()[6][3];
         aFour[2] = getCube()[7][3];
         aFour[3] = getCube()[7][2];
-        
+
         shiftRight(aFour);
-        
+
         //reverse assign
         getCube()[6][2] = aFour[0];
         getCube()[6][3] = aFour[1];
         getCube()[7][3] = aFour[2];
         getCube()[7][2] = aFour[3];
 
-        
-        
+
+
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[0][2];
         aEight[1] = getCube()[0][3];
         for (int i = 2; i < 8; i++) {
             aEight[i] = getCube()[5][7 - i];
         }
-        
+
         for(int i = 0; i < 2; i++) {
             shiftLeft(aEight);
         }
@@ -192,24 +204,24 @@ public class Cube {
         aFour[1] = getCube()[6][3];
         aFour[2] = getCube()[7][3];
         aFour[3] = getCube()[7][2];
-        
+
         shiftLeft(aFour);
-        
+
         //reverse assign
         getCube()[6][2] = aFour[0];
         getCube()[6][3] = aFour[1];
         getCube()[7][3] = aFour[2];
         getCube()[7][2] = aFour[3];
 
-        
-        
+
+
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[0][2];
         aEight[1] = getCube()[0][3];
         for (int i = 2; i < 8; i++) {
             aEight[i] = getCube()[5][7 - i];
         }
-        
+
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
         }
@@ -471,9 +483,9 @@ public class Cube {
         m_aCube[7][2] = backHand[5];
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
-        m_szSolve += "B' ";
+        m_szSolve += "BPrime ";
     }
-    
+
     public void turnX() {
         turnR();
         turnLPrime();
@@ -510,7 +522,7 @@ public class Cube {
         }
         aChar[aChar.length - 1] = cHold;
     }
-    
+
     public void shiftRight(char[] aChar) {
         char cHold = aChar[aChar.length - 1];
         for (int i = aChar.length - 1; i > 0; i--) {
@@ -531,7 +543,7 @@ public class Cube {
 
         while (aBotFace[0] != 'w' || aBotFace[1] != 'w' ||  aBotFace[2] != 'w' ||  aBotFace[3] != 'w')
         {
-           
+
             freeTurn();
             // if this, then we can't free turn anymore.
 
@@ -549,7 +561,7 @@ public class Cube {
             } else if (aBotFace[2] != 'w') {
                 turnD();
                 turnD();
-            } 
+            }
 
             if (getCube()[2][3] == 'w' || getCube()[1][3] == 'w' || getCube()[4][5] == 'w') {
                 turnU();
@@ -583,7 +595,7 @@ public class Cube {
                 turnR();
                 freeTurn();
             }
-            
+
         } else if (m_bFront) {
             if (getCube()[4][1] == 'w' || getCube()[5][1] == 'w') {
                 turnFPrime();
@@ -683,9 +695,9 @@ public class Cube {
                 nLocation = 1;
             }
             if (getCube()[4][4] == 'y' && getCube()[4][5] == 'y') {
-                nDouble++; 
+                nDouble++;
                 nLocation = 2;
-            } 
+            }
             if(getCube()[1][2] == 'y' && getCube()[1][3] == 'y') {
                 nDouble++;
                 nLocation = 3;

@@ -172,7 +172,9 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
             boolean result = ImageProcessor.processImage(data);
             //
             if (count > 4) {
-                //finished image processing GO TO NEXT STEP
+                Cube cb = new Cube(ImageProcessor.getMasterData());
+                cb.solve();
+                ImageProcessor.setLabelText(cb.cleanOutput());
                 Toast.makeText(getContext(), ":(", Toast.LENGTH_SHORT).show();
                 return;
             }

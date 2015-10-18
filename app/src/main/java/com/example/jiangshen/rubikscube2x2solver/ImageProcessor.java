@@ -102,9 +102,10 @@ public class ImageProcessor {
                 return false;
             }
             result += s;
-            result2 += colorAnalyzer(red[z],green[z],blue[z],avg[z]);
+            result2 += red[z]+""+green[z]+""+blue[z];
+            //result2 += colorAnalyzer(red[z],green[z],blue[z],avg[z]);
         }
-        //setLabelText(result + " " + result2);
+        setLabelText(result + result2);
 
         //if(result.contains(null)) return false;
 
@@ -146,6 +147,10 @@ public class ImageProcessor {
             masterData[6][3] = input.charAt(2);
             masterData[7][3] = input.charAt(3);
         }
+    }
+
+    public static char[][] getMasterData() {
+        return masterData;
     }
 
     public static String colorAnalyzer(int r, int g, int b, int avg) {
