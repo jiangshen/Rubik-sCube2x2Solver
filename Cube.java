@@ -445,36 +445,30 @@ public class Cube {
     public void turnX() {
         turnR();
         turnLPrime();
-        m_szSolve =+ "R LPrime ";
     }
 
     public void turnXPrime() {
         turnRPrime();
         turnL();
-        m_szSolve =+ "RPrime L ";
     }
 
     public void turnY() {
         turnU();
         turnDPrime();
-        m_szSolve =+ "U DPrime ";
     }
     public void turnYPrime() {
         turnUPrime();
         turnD();
-        m_szSolve =+ "UPrime D ";
     }
 
     public void turnZ() {
         turnF()
         turnBPrime();
-        m_szSolve =+ "F BPrime ";
     }
 
     public void turnZPrime() {
         turnFPrime();
         turnB();
-        m_szSolve =+ "FPrime B ";
     }
 
     public void shiftLeft(char[] aChar) {
@@ -582,6 +576,130 @@ public class Cube {
         turnR();
         turnU();
         turnU();
+        turnR();
+        turnR();
+    }
+
+    public void pbl_TTop() {
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnRPrime();
+        turnF();
+        turnR();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnFPrime();
+    }
+    public void pbl_TBot() {
+        turnX();
+        turnX();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnRPrime();
+        turnF();
+        turnR();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnFPrime();
+    }
+
+    public void pbl_YTop() {
+        turnF();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnFPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnRPrime();
+        turnF();
+        turnR();
+        turnFPrime();
+    }
+
+    public void pbl_YBot() {
+        turnZ();
+        turnZ();
+        turnY();
+        turnF();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnFPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnRPrime();
+        turnF();
+        turnR();
+        turnFPrime();
+    }
+
+    public void pbl_UFDF() {
+        turnR();
+        turnR();
+        turnUPrime();
+        turnR();
+        turnR();
+        turnU();
+        turnU();
+        turnY();
+        turnR();
+        turnR();
+        turnUPrime();
+        turnR();
+        turnR();
+    }
+    public void pbl_Uadj() {
+        turnR();
+        turnUPrime();
+        turnR();
+        turnF();
+        turnF();
+        turnRPrime();
+        turnU();
+        turnRPrime();
+    }
+    public void pbl_Udiag() {
+        turnL();
+        turnDPrime();
+        turnL();
+        turnF();
+        turnF();
+        turnLPrime();
+        turnD();
+        turnLPrime();
+    }
+    public void pbl_UD() {
+        turnR();
+        turnR();
+        turnF();
+        turnF();
         turnR();
         turnR();
     }
