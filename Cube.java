@@ -830,15 +830,18 @@ public class Cube {
             nBotLocation = 0;
         }
 
+        if (nBotPairs == 4) {
+            bBotSolved = true;
+        }
         System.out.println(nBotPairs);
-        if (nBotPairs != 4 && bTopSolved) {
+        if (!bBotSolved && bTopSolved) {
             turnX();
             turnX();
             bBotSolved = true;
             bTopSolved = false;
             nTopLocation = nBotLocation;
         }
-        if (!bTopSolved/* && bBotSolved*/) {
+        if (!bTopSolved && bBotSolved) {
             //Here are the 4 on top, only need to include 2.
             System.out.println(nTopLocation);
             System.out.println(nTopPairs);
@@ -855,6 +858,45 @@ public class Cube {
                 pbl_TTop();
             } else {
                 pbl_YTop();
+            }
+        } else if (!bTopSolved && !bBotSolved) {
+            if (nTopLocation > -1 && nBotLocation > -1) {
+                if (nTopLocation == 0) {
+                    turnU();
+                } else if (nTopLocation == 2) {
+                    turnUPrime();
+                } else if (nTopLocation == 3) {
+                    turnU();
+                    turnU();
+                }
+                if (nBotLocation == 0) {
+                    turnDPrime();
+                } else if (nBotLocation == 2) {
+                    turnD();
+                } else if (nBotLocation == 1) {
+                    turnD();
+                    turnD();
+                }
+                pbl_UFDF();
+            } else if (nTopLocation > -1) {
+                //top double, bot not
+                if (nTopLocation == 0) {
+                    turnUPrime();
+                } else if (nTopLocation == 1) {
+                    turnU();
+                    turnU();
+                } else if (nTopLocation == 2) {
+                    turnU();
+                }
+                //todo ADJUST bot. Maybe not?
+                pbl_Uadj();
+            } else if (nBotLocation > -1) {
+                //bot double, top not
+                turnX();
+                turnX();
+                permuteBL();
+            } else {
+                pbl_UD();
             }
         }
 
@@ -1070,6 +1112,10 @@ public class Cube {
         turnF();
         turnR();
         turnR();
+    }
+
+    public void cleanOutput() {
+        //TODO Things like UUU or U U' or etc.
     }
 
     @Override
