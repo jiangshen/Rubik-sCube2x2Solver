@@ -4,7 +4,9 @@ package com.example.jiangshen.rubikscube2x2solver;
  * Created by jiangshen on 10/17/15.
  */
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -33,6 +35,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int count = 0;
     private final String[] lblText = {"LEFT", "RIGHT","FRONT","BACK","BOTTOM"};
+    Context context;
 
 
     private static final String TAG ="CameraView";
@@ -42,6 +45,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     public CameraView(Context context) {
         super(context);
+        this.context = context;
         init();
     }
 
@@ -176,6 +180,9 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
                 cb.solve();
                 ImageProcessor.setLabelText(cb.cleanOutput());
                 Toast.makeText(getContext(), ":(", Toast.LENGTH_SHORT).show();
+
+                //alert("Testing!");
+
                 return;
             }
 
@@ -191,6 +198,40 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
             //((FrameLayout)getParent()).addView(iv);
         }
     };
+
+//    public void alert(String output) {
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//
+//        // set title
+//        alertDialogBuilder.setTitle(output);
+//
+//        // set dialog message
+//        alertDialogBuilder
+//                .setMessage("Click yes to exit!")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog,int id) {
+//                        // if this button is clicked, close
+//                        // current activity
+//                        //MainActivity.this.finish();
+//                    }
+//                })
+//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // if this button is clicked, just close
+//                        // the dialog box and do nothing
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//        // create alert dialog
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//        // show it
+//        alertDialog.show();
+//
+//    }
+
 
     private void resetCam() {
         mCamera.startPreview();

@@ -97,6 +97,7 @@ public class ImageProcessor {
         String result2 = "";
         for (int z = 0; z < 4; z++) {
             //check null here
+
             String s = colorAnalyzer2(red[z],green[z],blue[z]);
             if(s == null) {
                 return false;
@@ -105,8 +106,8 @@ public class ImageProcessor {
             result2 += red[z]+""+green[z]+""+blue[z];
             //result2 += colorAnalyzer(red[z],green[z],blue[z],avg[z]);
         }
-        setLabelText(result + result2);
 
+        //setLabelText(result + result2);
         //if(result.contains(null)) return false;
 
         addToMaster(result);
@@ -177,7 +178,7 @@ public class ImageProcessor {
             //It's white
             return "w";
             //pass = true;
-        } else if (red < 100 && green > 75 && green < 145 && blue > 125 && blue < 175) {
+        } else if (red < 100 && green > 75 && green < 145 && blue > 100 && blue < 175) {
             //It's blue
             return "b";
             //pass = true;
@@ -185,15 +186,15 @@ public class ImageProcessor {
             // it's yellow
             return "y";
             //pass = true;
-        } else if(red < 50 && green > 150 && blue > 75 && blue < 175) {
+        } else if(red < 100 && green > 125 && blue > 75 && blue < 175) {
             // it's green
             return "g";
             //pass = true;
-        } else if(red > 150 && green > 109 && green < 150 && blue < 125) {
+        } else if(red > 125 && green >= 97 && green < 200 && blue < 125) {
             // it's orange
             return "o";
             //pass = true;
-        } else if (red > 125 && green < 110 && blue < 130) {
+        } else if (red > 75 && green < 97 && blue < 130) {
             //it's red
             return "r";
             //pass = true;
