@@ -520,7 +520,9 @@ public class Cube {
 
     public void solveFirstLayer() {
         // as long as the first layer isn't solved
+
         updateBotBoolean();
+
         if (getCube()[6][2] != 'w' || getCube()[6][3] != 'w' ||  getCube()[7][2] != 'w' ||  getCube()[7][3] != 'w')
         {
             //check if we can free turn
