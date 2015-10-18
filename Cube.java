@@ -79,6 +79,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[4][7 - i] = aEight[i];
         }
+        m_szSolve =+ "U ";
     }
 
     public void turnUPrime() {
@@ -114,6 +115,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[4][7 - i] = aEight[i];
         }
+        m_szSolve =+ "UPrime ";
     }
 
     public void turnD() {
@@ -149,6 +151,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[5][7 - i] = aEight[i];
         }
+        m_szSolve =+ "D ";
     }
 
     public void turnDPrime() {
@@ -184,6 +187,7 @@ public class Cube {
         for (int i = 2; i < 8; i++) {
             getCube()[5][7 - i] = aEight[i];
         }
+        m_szSolve =+ "DPrime ";
     }
 
     public void turnL() {
@@ -208,6 +212,7 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
+        m_szSolve =+ "L ";
     }
 
     public void turnLPrime() {
@@ -233,6 +238,7 @@ public class Cube {
         m_aCube[4][1] = leftLeft[1];
         m_aCube[5][1] = leftLeft[2];
         m_aCube[5][0] = leftLeft[3];
+        m_szSolve =+ "LPrime ";
     }
 
     public void turnR() {
@@ -258,6 +264,7 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
+        m_szSolve =+ "R ";
     }
 
     public void turnRPrime() {
@@ -283,6 +290,7 @@ public class Cube {
         m_aCube[4][5] = rightRight[1];
         m_aCube[5][5] = rightRight[2];
         m_aCube[5][4] = rightRight[3];
+        m_szSolve =+ "RPrime ";
     }
 
     public void turnF() {
@@ -318,9 +326,9 @@ public class Cube {
         m_aCube[5][4] = frontHand[3];
         m_aCube[6][3] = frontHand[4];
         m_aCube[6][2] = frontHand[5];
-        m_aCube[5][1] = frontHand[6] ;
+        m_aCube[5][1] = frontHand[6];
         m_aCube[4][1] = frontHand[7];
-
+        m_szSolve =+ "F ";
     }
     public void turnFPrime() {
         char[] frontFront = new char[4];
@@ -355,8 +363,9 @@ public class Cube {
         m_aCube[5][4] = frontHand[3];
         m_aCube[6][3] = frontHand[4];
         m_aCube[6][2] = frontHand[5];
-        m_aCube[5][1] = frontHand[6] ;
+        m_aCube[5][1] = frontHand[6];
         m_aCube[4][1] = frontHand[7];
+        m_szSolve =+ "FPrime ";
     }
 
     public void turnB() {
@@ -393,6 +402,7 @@ public class Cube {
         m_aCube[7][2] = backHand[5];
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
+        m_szSolve =+ "B ";
     }
 
     public void turnBPrime() {
@@ -429,35 +439,42 @@ public class Cube {
         m_aCube[7][2] = backHand[5];
         m_aCube[5][0] = backHand[6];
         m_aCube[4][0] = backHand[7];
+        m_szSolve =+ "B' ";
     }
     
     public void turnX() {
         turnR();
         turnLPrime();
+        m_szSolve =+ "R LPrime ";
     }
 
     public void turnXPrime() {
         turnRPrime();
         turnL();
+        m_szSolve =+ "RPrime L ";
     }
 
     public void turnY() {
         turnU();
         turnDPrime();
+        m_szSolve =+ "U DPrime ";
     }
     public void turnYPrime() {
         turnUPrime();
         turnD();
+        m_szSolve =+ "UPrime D ";
     }
 
     public void turnZ() {
         turnF()
         turnBPrime();
+        m_szSolve =+ "F BPrime ";
     }
 
     public void turnZPrime() {
         turnFPrime();
         turnB();
+        m_szSolve =+ "FPrime B ";
     }
 
     public void shiftLeft(char[] aChar) {
