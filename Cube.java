@@ -28,12 +28,9 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[4][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
@@ -41,12 +38,9 @@ public class Cube {
 
         getCube()[1][2] = aEight[0];
         getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
+        for (int i = 2; i < 8; i++) {
+            getCube()[4][7 - i] = aEight[i];
+        }
     }
 
     public void turnUPrime() {
@@ -69,12 +63,9 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[4][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftLeft(aEight);
@@ -82,12 +73,9 @@ public class Cube {
 
         getCube()[1][2] = aEight[0];
         getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
+        for (int i = 2; i < 8; i++) {
+            getCube()[4][7 - i] = aEight[i];
+        }
     }
 
     public void turnD() {
@@ -110,29 +98,54 @@ public class Cube {
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[0][2];
         aEight[1] = getCube()[0][3];
-        aEight[2] = getCube()[4][5];
-        aEight[3] = getCube()[4][4];
-        aEight[4] = getCube()[4][3];
-        aEight[5] = getCube()[4][2];
-        aEight[6] = getCube()[4][1];
-        aEight[7] = getCube()[4][0];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[5][7 - i];
+        }
+        
+        for(int i = 0; i < 2; i++) {
+            shiftLeft(aEight);
+        }
+
+        getCube()[0][2] = aEight[0];
+        getCube()[0][3] = aEight[1];
+        for (int i = 2; i < 8; i++) {
+            getCube()[5][7 - i] = aEight[i];
+        }
+    }
+
+    public void turnDPrime() {
+        char[] aFour = new char[4]; //the top layer in this case
+        aFour[0] = getCube()[6][2];
+        aFour[1] = getCube()[6][3];
+        aFour[2] = getCube()[7][3];
+        aFour[3] = getCube()[7][2];
+        
+        shiftLeft(aFour);
+        
+        //reverse assign
+        getCube()[6][2] = aFour[0];
+        getCube()[6][3] = aFour[1];
+        getCube()[7][3] = aFour[2];
+        getCube()[7][2] = aFour[3];
+
+        
+        
+        char[] aEight = new char[8]; //this is the other four layers
+        aEight[0] = getCube()[0][2];
+        aEight[1] = getCube()[0][3];
+        for (int i = 2; i < 8; i++) {
+            aEight[i] = getCube()[5][7 - i];
+        }
         
         for(int i = 0; i < 2; i++) {
             shiftRight(aEight);
         }
 
-        getCube()[1][2] = aEight[0];
-        getCube()[1][3] = aEight[1];
-        getCube()[4][5] = aEight[2];
-        getCube()[4][4] = aEight[3];
-        getCube()[4][3] = aEight[4];
-        getCube()[4][2] = aEight[5];
-        getCube()[4][1] = aEight[6];
-        getCube()[4][0] = aEight[7];
-    }
-
-    public void turnDPrime() {
-
+        getCube()[0][2] = aEight[0];
+        getCube()[0][3] = aEight[1];
+        for (int i = 2; i < 8; i++) {
+            getCube()[5][7 - i] = aEight[i];
+        }
     }
 
 
