@@ -5,13 +5,13 @@ public class Driver {
             new char[] {' ', ' ', 'b', 'b', ' ', ' '},
             new char[] {' ', ' ', 'y', 'y', ' ', ' '},
             new char[] {' ', ' ', 'y', 'y', ' ', ' '},
-            new char[] {'1', '2', 'g', 'g', '1', '2'},
-            new char[] {'4', '3', 'g', 'g', '4', '3'},
+            new char[] {'r', 'r', '1', '2', 'o', 'o'},
+            new char[] {'r', 'r', '4', '3', 'o', 'o'},
             new char[] {' ', ' ', 'w', 'w', ' ', ' '},
             new char[] {' ', ' ', 'w', 'w', ' ', ' '}});
 
 
-        oCube.turnR();
+        oCube.turnFPrime();
 
         System.out.println(oCube);
     }
