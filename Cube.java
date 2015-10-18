@@ -507,6 +507,84 @@ public class Cube {
         }
     }
 
+    public void oll_U() {
+        turnF();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnFPrime();
+    }
+
+    public void oll_T() {
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnRPrime();
+        turnF();
+        turnR();
+        turnFPrime();
+    }
+
+    public void oll_L() {
+        turnF();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnFPrime();
+    }
+
+    public void oll_S() {
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnU();
+        turnRPrime();
+    }
+
+    public void oll_As() {
+        turnR();
+        turnU();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnUPrime();
+        turnRPrime();
+    }
+
+    public void oll_Pi() {
+        turnF();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnR();
+        turnU();
+        turnRPrime();
+        turnUPrime();
+        turnFPrime();
+    }
+
+    public void oll_H() {
+        turnR();
+        turnR();
+        turnU();
+        turnU();
+        turnR();
+        turnU();
+        turnU();
+        turnR();
+        turnR();
+    }
 
     @Override
     public String toString() {
