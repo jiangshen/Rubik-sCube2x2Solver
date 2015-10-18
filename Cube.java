@@ -172,8 +172,8 @@ public class Cube {
         leftLeft[2] = m_aCube[5][1];
         leftLeft[3] = m_aCube[5][0];
 
-        shiftRight(leftHand);
-        shiftRight(leftHand);
+        shiftLeft(leftHand);
+        shiftLeft(leftHand);
         shiftLeft(leftLeft);
 
         for (int i = 0; i < leftHand.length; i++) {
@@ -189,7 +189,7 @@ public class Cube {
         char[] rightHand = new char[8];
 
         for (int i = 0; i < rightHand.length; i++) {
-            rightHand[i] = m_aCube[i][2];
+            rightHand[i] = m_aCube[i][3];
         }
         rightRight[0] = m_aCube[4][4];
         rightRight[1] = m_aCube[4][5];
@@ -201,7 +201,7 @@ public class Cube {
         shiftRight(rightRight);
 
         for (int i = 0; i < rightHand.length; i++) {
-            m_aCube[i][2] = rightHand[i];
+            m_aCube[i][3] = rightHand[i];
         }
         m_aCube[4][4] = rightRight[0];
         m_aCube[4][5] = rightRight[1];
@@ -214,7 +214,7 @@ public class Cube {
         char[] rightHand = new char[8];
 
         for (int i = 0; i < rightHand.length; i++) {
-            rightHand[i] = m_aCube[i][2];
+            rightHand[i] = m_aCube[i][3];
         }
         rightRight[0] = m_aCube[4][4];
         rightRight[1] = m_aCube[4][5];
@@ -226,7 +226,7 @@ public class Cube {
         shiftLeft(rightRight);
 
         for (int i = 0; i < rightHand.length; i++) {
-            m_aCube[i][2] = rightHand[i];
+            m_aCube[i][3] = rightHand[i];
         }
         m_aCube[4][4] = rightRight[0];
         m_aCube[4][5] = rightRight[1];
