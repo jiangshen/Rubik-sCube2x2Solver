@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
-
 /**
  * Created by jiangshen on 10/18/15.
  */
@@ -45,11 +43,11 @@ public class ImageProcessor {
         iH = h;
     }
 
-    public static byte[] returnImg(){
-        ByteArrayOutputStream blob = new ByteArrayOutputStream();
-        bmpTemp.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, blob);
-        return blob.toByteArray();
-    }
+//    public static byte[] returnImg(){
+//        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+//        bmpTemp.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, blob);
+//        return blob.toByteArray();
+//    }
 
     public static boolean storeToArray(Bitmap img) {
 
@@ -57,7 +55,6 @@ public class ImageProcessor {
         int[] green = new int[4];
         int[] blue = new int[4];
         int[] avg = new int[4];
-
 
         int[][] allP = new int[4][5];
 
@@ -68,7 +65,9 @@ public class ImageProcessor {
                 allP[nCounter][0] = img.getPixel((2 * a + 1) * 1250 / 4, (2 * b + 1) * 1250 / 4);
                 for (int i = -1; i < 1; i++) {
                     for (int j = -1; j < 1; j++) {
-                        allP[nCounter][nCount++] = img.getPixel((2 * a + 1) * (1250 / 4) - 20 - 40 * i, (2 * b + 1) * (1250 / 4) - 20 - 40 * j);
+                        allP[nCounter][nCount++] =
+                                img.getPixel((2 * a + 1) * (1250 / 4) - 20 - 40 * i,
+                                        (2 * b + 1) * (1250 / 4) - 20 - 40 * j);
                     }
                 }
                 nCounter++;
@@ -86,9 +85,6 @@ public class ImageProcessor {
             blue[i] = blue[i] / 5;
             avg[i] = (red[i] + green[i] + blue[i]) / 3;
         }
-
-
-
 
         //setLabelText(red + ", " + green + ", " + blue + " " + colorAnalyzer(red, green, blue, avg));
         //setLabelText(avg[0] + " | " + red + " " + green + " " + blue + " " + colorAnalyzer2(red[1], green[1], blue[1]) + colorAnalyzer(red[0], green[0], blue[0], avg[0]));

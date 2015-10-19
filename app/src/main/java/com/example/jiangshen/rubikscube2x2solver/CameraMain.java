@@ -30,12 +30,6 @@ public class CameraMain extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
         ImageProcessor.setLabel((TextView) findViewById(R.id.textInstr));
     }
 
@@ -54,26 +48,13 @@ public class CameraMain extends AppCompatActivity {
                 horizontalLine.getWidth(), verticalLine.getHeight());
     }
 
-    //    @Override
+//    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //    }
 
     protected void onCapture() {
-//        TextView t = (TextView)findViewById(R.id.textInstr);
-        //t.setText("PHOTOS TAKEN");
-
-        CameraView c = (CameraView) findViewById(R.id.cameraView);
-        c.takePhoto();
-
-        //capture
-        //set text
+        CameraView cv = (CameraView) findViewById(R.id.cameraView);
+        cv.takePhoto();
     }
-
-
-
-
-
-
-
 }

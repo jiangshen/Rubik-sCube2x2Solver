@@ -1,7 +1,7 @@
 package com.example.jiangshen.rubikscube2x2solver;
 
 /**
- * Created by jiangshen on 10/18/15.
+ * Created by jesse huang, marcus loo  on 10/18/15.
  */
 public class Cube {
     char[][] m_aCube;
@@ -23,7 +23,6 @@ public class Cube {
         orientLL();
         permuteBL();
     }
-
 
     public void updateBotBoolean() {
         //bBack
@@ -106,7 +105,6 @@ public class Cube {
         getCube()[3][2] = aFour[3];
 
 
-
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[1][2];
         aEight[1] = getCube()[1][3];
@@ -127,7 +125,8 @@ public class Cube {
     }
 
     public void turnUPrime() {
-        char[] aFour = new char[4]; //the top layer in this case
+
+        char[] aFour = new char[4];// the top layer in this case
         aFour[0] = getCube()[2][2];
         aFour[1] = getCube()[2][3];
         aFour[2] = getCube()[3][3];
@@ -178,7 +177,6 @@ public class Cube {
         getCube()[7][2] = aFour[3];
 
 
-
         char[] aEight = new char[8]; //this is the other four layers
         aEight[0] = getCube()[0][2];
         aEight[1] = getCube()[0][3];
@@ -212,7 +210,6 @@ public class Cube {
         getCube()[6][3] = aFour[1];
         getCube()[7][3] = aFour[2];
         getCube()[7][2] = aFour[3];
-
 
 
         char[] aEight = new char[8]; //this is the other four layers

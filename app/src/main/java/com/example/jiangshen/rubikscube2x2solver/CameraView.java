@@ -4,12 +4,7 @@ package com.example.jiangshen.rubikscube2x2solver;
  * Created by jiangshen on 10/17/15.
  */
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
@@ -17,17 +12,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import java.util.*;
-import android.graphics.Rect;
 
 
 /** A basic Camera preview class */
@@ -166,23 +154,16 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     PictureCallback jpegCallback = new PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
+            //refreshes the camera for the next picture
             resetCam();
 
-            //Toast.makeText(getContext(), "Photos taken, processing...", Toast.LENGTH_SHORT).show();
-
-//            ImageProcessor ip = new ImageProcessor();
-//            byte[] finalData = ip.processImage(data);
-
             boolean result = ImageProcessor.processImage(data);
-            //
+
+            //if all sides has been retrieved
             if (count > 4) {
                 Cube cb = new Cube(ImageProcessor.getMasterData());
                 cb.solve();
                 ImageProcessor.setLabelText(cb.cleanOutput());
-                Toast.makeText(getContext(), ":(", Toast.LENGTH_SHORT).show();
-
-                //alert("Testing!");
-
                 return;
             }
 
@@ -231,7 +212,6 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 //        alertDialog.show();
 //
 //    }
-
 
     private void resetCam() {
         mCamera.startPreview();
