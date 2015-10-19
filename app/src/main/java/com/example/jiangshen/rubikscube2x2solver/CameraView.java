@@ -4,18 +4,40 @@ package com.example.jiangshen.rubikscube2x2solver;
  * Created by jiangshen on 10/17/15.
  */
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
+import android.hardware.Camera.PictureCallback;
+import android.hardware.Camera.ShutterCallback;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import java.util.*;
+import android.graphics.Rect;
+
 
 /** A basic Camera preview class */
 public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
+
+    private int count = 0;
+    private final String[] lblText = {"LEFT", "RIGHT","FRONT","BACK","BOTTOM"};
+    Context context;
+
+
     private static final String TAG ="CameraView";
     
     private SurfaceHolder mHolder;
@@ -23,6 +45,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     public CameraView(Context context) {
         super(context);
+        this.context = context;
         init();
     }
 
@@ -61,6 +84,14 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         try {
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
+
+            //set camera to continually auto-focus
+            Camera.Parameters params = mCamera.getParameters();
+            //*EDIT*//params.setFocusMode("continuous-picture");
+            //It is better to use defined constraints as opposed to String, thanks to AbdelHady
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            mCamera.setParameters(params);
+
         } catch (IOException e) {
             Log.d(TAG, "Error setting camera preview: " + e.getMessage());
         }
@@ -97,5 +128,112 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         } catch (Exception e){
             Log.d(TAG, "Error starting camera preview: " + e.getMessage());
         }
+    }
+
+    /**
+     * When this function returns, mCamera will be null.
+     */
+    private void stopPreviewAndFreeCamera() {
+
+        if (mCamera != null) {
+            // Call stopPreview() to stop updating the preview surface.
+            mCamera.stopPreview();
+
+            // Important: Call release() to release the camera for use by other
+            // applications. Applications should release the camera immediately
+            // during onPause() and re-open() it during onResume()).
+            mCamera.release();
+
+            mCamera = null;
+        }
+    }
+
+    public void takePhoto () {
+        mCamera.takePicture(shutterCallback, rawCallback, jpegCallback);
+    }
+
+    ShutterCallback shutterCallback = new ShutterCallback() {
+        public void onShutter() {
+            //Log.d(TAG, "onShutter'd");
+        }
+    };
+
+    PictureCallback rawCallback = new PictureCallback() {
+        public void onPictureTaken(byte[] data, Camera camera) {
+            //Log.d(TAG, "onPictureTaken - raw");
+        }
+    };
+
+    PictureCallback jpegCallback = new PictureCallback() {
+        public void onPictureTaken(byte[] data, Camera camera) {
+            resetCam();
+
+            //Toast.makeText(getContext(), "Photos taken, processing...", Toast.LENGTH_SHORT).show();
+
+//            ImageProcessor ip = new ImageProcessor();
+//            byte[] finalData = ip.processImage(data);
+
+            boolean result = ImageProcessor.processImage(data);
+            //
+            if (count > 4) {
+                Cube cb = new Cube(ImageProcessor.getMasterData());
+                cb.solve();
+                ImageProcessor.setLabelText(cb.cleanOutput());
+                Toast.makeText(getContext(), ":(", Toast.LENGTH_SHORT).show();
+
+                //alert("Testing!");
+
+                return;
+            }
+
+            if(result) {
+                ImageProcessor.setLabelText("Please take the " + lblText[count] + " view");
+                count++;
+            } else {
+                Toast.makeText(getContext(), "Did not get data, take again!", Toast.LENGTH_SHORT).show();
+            };
+
+            //ImageView iv = new ImageView(getContext());
+            //iv.setImageDrawable(Drawable.createFromStream(new ByteArrayInputStream(ImageProcessor.returnImg()), "??"));
+            //((FrameLayout)getParent()).addView(iv);
+        }
+    };
+
+//    public void alert(String output) {
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//
+//        // set title
+//        alertDialogBuilder.setTitle(output);
+//
+//        // set dialog message
+//        alertDialogBuilder
+//                .setMessage("Click yes to exit!")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog,int id) {
+//                        // if this button is clicked, close
+//                        // current activity
+//                        //MainActivity.this.finish();
+//                    }
+//                })
+//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        // if this button is clicked, just close
+//                        // the dialog box and do nothing
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//        // create alert dialog
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//        // show it
+//        alertDialog.show();
+//
+//    }
+
+
+    private void resetCam() {
+        mCamera.startPreview();
     }
 }

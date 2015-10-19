@@ -17,20 +17,56 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/camera_button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Take Picture"
-        />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Please take the TOP view"
+        android:id="@+id/textInstr" />
 
-    <com.example.jiangshen.rubikscube2x2solver.CameraView
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
+        <com.example.jiangshen.rubikscube2x2solver.CameraView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+            android:id="@+id/cameraView" />
 
-        />
+        <com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/square_framelayout">
+            <!-- border -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/overlay"
+                android:layout_margin="80dp"
+                android:id="@+id/box"
+                />
 
+            <!-- vertical line -->
+            <View
+                android:id="@+id/vertical_line"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#0099FF"
+                android:layout_gravity="center"
+                android:layout_margin="80dp"
+                />
 
+            <!-- horizontal line -->
+            <View
+                android:id="@+id/horizontal_line"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="#0099FF"
+                android:layout_gravity="center"
+                android:layout_margin="80dp"
+                />
+
+        </com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout>
+    </FrameLayout>
 
 </LinearLayout>
