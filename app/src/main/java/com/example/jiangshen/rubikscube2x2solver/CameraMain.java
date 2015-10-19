@@ -19,7 +19,6 @@ public class CameraMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_main);
 
-
         findViewById(R.id.cameraView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,7 +28,6 @@ public class CameraMain extends AppCompatActivity {
                 //startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
             }
         });
-
         ImageProcessor.setLabel((TextView) findViewById(R.id.textInstr));
     }
 

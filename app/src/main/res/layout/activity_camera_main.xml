@@ -6,23 +6,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".CameraMain"
     android:orientation="vertical"
+    android:background="#e4e8b5"
     android:id="@+id/a">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Welcome to Rubik&apos;s Cube Solver"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#8f797e"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Please take the TOP view"
-        android:id="@+id/textInstr" />
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/textInstr"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
