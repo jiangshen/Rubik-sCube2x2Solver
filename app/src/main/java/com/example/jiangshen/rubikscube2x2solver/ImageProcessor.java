@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.util.Log;
 import android.widget.TextView;
 
 /**
@@ -28,7 +29,12 @@ public class ImageProcessor {
         imgBMP = RotateBitmap(imgBMP, 90.0f);
         //imgBMP = Bitmap.createBitmap(imgBMP, iX * 10, iY * 10, iW, iH);
 
-        imgBMP = Bitmap.createBitmap(imgBMP, imgBMP.getWidth() / 2 - 625, imgBMP.getHeight() / 2 - 1000, 1250, 1250);
+        //JESSE THIS IS THE LOG
+        String aa = String.format("Original Pict: Width: %d Length: %d | X: %d Y: %d, W: %d H: %d", imgBMP.getWidth(), imgBMP.getHeight(), imgBMP.getWidth() / 2 - 625, imgBMP.getHeight() / 2 - 1000, 1250, 1250);
+        Log.d("ImageProcessor", aa);
+
+        //JESSE it will crash for negative values this function where i get the cropped images COMMENT THIS FIRST
+        //imgBMP = Bitmap.createBitmap(imgBMP, imgBMP.getWidth() / 2 - 625, imgBMP.getHeight() / 2 - 1000, 1250, 1250);
 
         bmpTemp = imgBMP;
         //setLabelText(iX + ", " + iY + ", " + iW + ", " + iH);

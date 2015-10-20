@@ -1,14 +1,8 @@
 package com.example.jiangshen.rubikscube2x2solver;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.hardware.Camera;
-import android.media.Image;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,6 +23,12 @@ public class CameraMain extends AppCompatActivity {
             }
         });
         ImageProcessor.setLabel((TextView) findViewById(R.id.textInstr));
+
+        //TESTING!!!
+        int w1 = getWindowManager().getDefaultDisplay().getWidth();
+        int h1 = getWindowManager().getDefaultDisplay().getHeight();
+        String a = String.format("w: %d h: %d", w1, h1);
+        Log.d("CameraMain", a);
     }
 
     @Override
