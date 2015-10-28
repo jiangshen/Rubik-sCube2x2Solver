@@ -34,7 +34,7 @@ public class ImageProcessor {
         Log.d("ImageProcessor", aa);
 
         //JESSE it will crash for negative values this function where i get the cropped images COMMENT THIS FIRST
-        //imgBMP = Bitmap.createBitmap(imgBMP, imgBMP.getWidth() / 2 - 625, imgBMP.getHeight() / 2 - 1000, 1250, 1250);
+        imgBMP = Bitmap.createBitmap(imgBMP, imgBMP.getWidth() / 2 - 625, imgBMP.getHeight() / 2 - 1000, 1250, 1250);
 
         bmpTemp = imgBMP;
         //setLabelText(iX + ", " + iY + ", " + iW + ", " + iH);

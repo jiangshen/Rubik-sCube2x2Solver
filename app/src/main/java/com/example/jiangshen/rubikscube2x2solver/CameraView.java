@@ -22,7 +22,7 @@ import java.io.IOException;
 public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int count = 0;
-    private final String[] lblText = {"LEFT", "RIGHT","FRONT","BACK","BOTTOM"};
+    private final String[] lblText = {"Left", "Right","Front","Back","Bottom"};
     Context context;
 
 
@@ -126,12 +126,10 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         if (mCamera != null) {
             // Call stopPreview() to stop updating the preview surface.
             mCamera.stopPreview();
-
             // Important: Call release() to release the camera for use by other
             // applications. Applications should release the camera immediately
             // during onPause() and re-open() it during onResume()).
             mCamera.release();
-
             mCamera = null;
         }
     }
@@ -168,7 +166,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
             }
 
             if(result) {
-                ImageProcessor.setLabelText("Please take the " + lblText[count] + " view");
+                ImageProcessor.setLabelText(lblText[count] + " view");
                 count++;
             } else {
                 Toast.makeText(getContext(), "Did not get data, take again!", Toast.LENGTH_SHORT).show();
