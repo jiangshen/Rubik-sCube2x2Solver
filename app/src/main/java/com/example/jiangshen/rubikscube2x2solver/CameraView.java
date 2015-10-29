@@ -8,10 +8,12 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
+import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -169,7 +171,9 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
                 ImageProcessor.setLabelText(lblText[count] + " view");
                 count++;
             } else {
-                Toast.makeText(getContext(), "Did not get data, take again!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Did not get data, take again!", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(getRootView(), "Did not get data, take again!", Snackbar.LENGTH_SHORT);
+                snackbar.show();
             };
 
             //ImageView iv = new ImageView(getContext());

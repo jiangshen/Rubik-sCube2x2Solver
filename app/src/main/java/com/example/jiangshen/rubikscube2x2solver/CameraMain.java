@@ -1,5 +1,7 @@
 package com.example.jiangshen.rubikscube2x2solver;
 
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,16 +10,19 @@ import android.widget.TextView;
 
 public class CameraMain extends AppCompatActivity {
 
+    CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_main);
 
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
         findViewById(R.id.cameraView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onCapture();
-
                 //to start camera
                 //startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
             }

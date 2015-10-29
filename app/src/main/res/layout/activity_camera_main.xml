@@ -1,125 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/coordinatorLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraMain"
-    android:animateLayoutChanges="true"
-    android:orientation="vertical"
-    android:background="#e5e5e5"
-    android:id="@+id/a">
+    tools:context=".CameraMain">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp"
-        card_view:cardElevation = "3dp"
-        card_view:cardCornerRadius="3dp" >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CameraMain"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:background="#e5e5e5"
+        android:id="@+id/a">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            card_view:cardElevation = "3dp"
+            card_view:cardCornerRadius="3dp" >
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Welcome"
-                android:textStyle="bold"
-                android:id="@+id/textView"
-                android:background="#607D8B"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textColor="#fff" />
+                android:layout_height="wrap_content">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Welcome"
+                    android:textStyle="bold"
+                    android:id="@+id/textView"
+                    android:background="#607D8B"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#fff" />
 
-                <com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/square_framelayout">
+                    android:layout_below="@+id/textView">
 
-                    <com.example.jiangshen.rubikscube2x2solver.CameraView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/cameraView" />
+                    <com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/square_framelayout">
 
-                    <!-- border -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/overlay"
-                        android:layout_margin="80dp"
-                        android:id="@+id/box"
-                        />
+                        <com.example.jiangshen.rubikscube2x2solver.CameraView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/cameraView" />
 
-                    <!-- vertical line -->
-                    <View
-                        android:id="@+id/vertical_line"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#0099FF"
-                        android:layout_gravity="center"
-                        android:layout_margin="80dp"
-                        />
+                        <!-- border -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/overlay"
+                            android:layout_margin="80dp"
+                            android:id="@+id/box"
+                            />
 
-                    <!-- horizontal line -->
-                    <View
-                        android:id="@+id/horizontal_line"
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:background="#0099FF"
-                        android:layout_gravity="center"
-                        android:layout_margin="80dp"
-                        />
-                </com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout>
-            </FrameLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                        <!-- vertical line -->
+                        <View
+                            android:id="@+id/vertical_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#0099FF"
+                            android:layout_gravity="center"
+                            android:layout_margin="80dp"
+                            />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/card_view"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
+                        <!-- horizontal line -->
+                        <View
+                            android:id="@+id/horizontal_line"
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="#0099FF"
+                            android:layout_gravity="center"
+                            android:layout_margin="80dp"
+                            />
+                    </com.example.jiangshen.rubikscube2x2solver.SquareFrameLayout>
+                </FrameLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
-        <ImageView
-            android:layout_below="@+id/card_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toStartOf="@+id/textInstr"
-            android:id="@+id/imageView"
-            android:src="@drawable/ic_camera"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/card_view"
-            android:paddingBottom="3dp"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Top view"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:id="@+id/textInstr"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_below="@+id/card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/textInstr"
+                android:id="@+id/imageView"
+                android:src="@drawable/ic_camera"/>
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_view"
+                android:paddingBottom="3dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Top view"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:id="@+id/textInstr"/>
 
+        </LinearLayout>
 
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
