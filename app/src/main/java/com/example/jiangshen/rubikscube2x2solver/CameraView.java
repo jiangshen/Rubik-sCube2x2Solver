@@ -32,6 +32,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     
     private SurfaceHolder mHolder;
     private Camera mCamera;
+    private View parentView;
 
     public CameraView(Context context) {
         super(context);
@@ -140,6 +141,10 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         mCamera.takePicture(shutterCallback, rawCallback, jpegCallback);
     }
 
+    public void setParentView(View view) {
+        this.parentView = view;
+    }
+
     ShutterCallback shutterCallback = new ShutterCallback() {
         public void onShutter() {
             //Log.d(TAG, "onShutter'd");
@@ -172,7 +177,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
                 count++;
             } else {
                 //Toast.makeText(getContext(), "Did not get data, take again!", Toast.LENGTH_SHORT).show();
-                Snackbar snackbar = Snackbar.make(getRootView(), "Did not get data, take again!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(parentView, "Did not get data, take again!", Snackbar.LENGTH_SHORT);
                 snackbar.show();
             };
 

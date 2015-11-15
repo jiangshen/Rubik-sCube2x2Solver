@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class CameraMain extends AppCompatActivity {
 
     CoordinatorLayout coordinatorLayout;
+    View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class CameraMain extends AppCompatActivity {
         setContentView(R.layout.activity_camera_main);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        rootView = findViewById(R.id.root_view);
 
         findViewById(R.id.cameraView).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,5 +61,6 @@ public class CameraMain extends AppCompatActivity {
     protected void onCapture() {
         CameraView cv = (CameraView) findViewById(R.id.cameraView);
         cv.takePhoto();
+        cv.setParentView(rootView);
     }
 }
